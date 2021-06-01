@@ -5,7 +5,7 @@ package com.ximenes.sfgpetclinic.model;
  * Date: 27/05/2021
  * Time: 22:11
  */
-public class PetType {
+public class PetType extends BaseEntity {
     private String name;
 
     public String getName() {
