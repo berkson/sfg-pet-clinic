@@ -1,6 +1,6 @@
 package com.ximenes.sfgpetclinic.services;
 
-import com.ximenes.sfgpetclinic.model.Vet;
+import com.ximenes.sfgpetclinic.models.Vet;
 
 
 /**

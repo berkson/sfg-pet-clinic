@@ -1,4 +1,4 @@
-package com.ximenes.sfgpetclinic.model;
+package com.ximenes.sfgpetclinic.models;
 
 /**
  * created by bxs 27/05/21

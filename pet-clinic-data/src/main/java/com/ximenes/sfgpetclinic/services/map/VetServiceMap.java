@@ -1,6 +1,6 @@
 package com.ximenes.sfgpetclinic.services.map;
 
-import com.ximenes.sfgpetclinic.model.Vet;
+import com.ximenes.sfgpetclinic.models.Vet;
 import com.ximenes.sfgpetclinic.services.CrudService;
 
 import java.util.Set;

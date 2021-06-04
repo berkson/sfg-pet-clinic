@@ -1,4 +1,4 @@
-package com.ximenes.sfgpetclinic.model;
+package com.ximenes.sfgpetclinic.models;
 
 import java.time.LocalDate;
 
