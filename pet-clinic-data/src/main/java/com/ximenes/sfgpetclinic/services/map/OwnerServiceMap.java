@@ -2,6 +2,7 @@ package com.ximenes.sfgpetclinic.services.map;
 
 import com.ximenes.sfgpetclinic.models.Owner;
 import com.ximenes.sfgpetclinic.services.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
@@ -10,6 +11,7 @@ import java.util.Set;
  * Date: 03/06/2021
  * Time: 21:02
  */
+@Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
     @Override
