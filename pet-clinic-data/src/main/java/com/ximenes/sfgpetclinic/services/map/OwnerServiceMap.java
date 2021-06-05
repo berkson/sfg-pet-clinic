@@ -1,7 +1,7 @@
 package com.ximenes.sfgpetclinic.services.map;
 
 import com.ximenes.sfgpetclinic.models.Owner;
-import com.ximenes.sfgpetclinic.services.CrudService;
+import com.ximenes.sfgpetclinic.services.OwnerService;
 
 import java.util.Set;
 
@@ -10,7 +10,7 @@ import java.util.Set;
  * Date: 03/06/2021
  * Time: 21:02
  */
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements CrudService<Owner, Long> {
+public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
     @Override
     public Set<Owner> findAll() {
@@ -35,5 +35,11 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
     @Override
     public Owner findById(Long id) {
         return super.findById(id);
+    }
+
+    @Override
+    public Owner findBylastName(String lastName) {
+        return (Owner) super.map.entrySet()
+                .stream().filter(entry -> entry.getValue().getLastName().equals(lastName)).findFirst().get();
     }
 }

@@ -1,7 +1,7 @@
 package com.ximenes.sfgpetclinic.services.map;
 
 import com.ximenes.sfgpetclinic.models.Vet;
-import com.ximenes.sfgpetclinic.services.CrudService;
+import com.ximenes.sfgpetclinic.services.VetService;
 
 import java.util.Set;
 
@@ -10,7 +10,7 @@ import java.util.Set;
  * Date: 03/06/2021
  * Time: 21:07
  */
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     @Override
     public Set<Vet> findAll() {
         return super.findAll();
