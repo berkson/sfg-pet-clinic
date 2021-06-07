@@ -40,7 +40,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
     }
 
     @Override
-    public Owner findBylastName(String lastName) {
+    public Owner findByLastName(String lastName) {
         return (Owner) super.map.entrySet()
                 .stream().filter(entry -> entry.getValue().getLastName().equals(lastName)).findFirst().get();
     }

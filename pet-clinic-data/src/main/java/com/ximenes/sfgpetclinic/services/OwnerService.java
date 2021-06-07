@@ -9,5 +9,5 @@ import com.ximenes.sfgpetclinic.models.Owner;
  * Time: 20:54
  */
 public interface OwnerService extends CrudService<Owner, Long> {
-    Owner findBylastName(String lastName);
+    Owner findByLastName(String lastName);
 }
