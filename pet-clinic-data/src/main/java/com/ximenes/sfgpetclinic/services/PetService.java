@@ -8,6 +8,7 @@ import com.ximenes.sfgpetclinic.models.Pet;
  * Date: 31/05/2021
  * Time: 20:58
  */
+
 public interface PetService extends CrudService<Pet, Long> {
 
 }

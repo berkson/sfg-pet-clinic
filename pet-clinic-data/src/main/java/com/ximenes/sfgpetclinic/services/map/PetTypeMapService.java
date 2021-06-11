@@ -2,6 +2,7 @@ package com.ximenes.sfgpetclinic.services.map;
 
 import com.ximenes.sfgpetclinic.models.PetType;
 import com.ximenes.sfgpetclinic.services.PetTypeService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
@@ -10,6 +11,7 @@ import java.util.Set;
  * Date: 11/06/2021
  * Time: 10:31
  */
+@Service
 public class PetTypeMapService extends AbstractMapService<PetType, Long> implements PetTypeService {
     @Override
     public Set<PetType> findAll() {
