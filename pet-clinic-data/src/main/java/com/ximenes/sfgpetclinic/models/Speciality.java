@@ -5,7 +5,7 @@ package com.ximenes.sfgpetclinic.models;
  * Date: 11/06/2021
  * Time: 09:40
  */
-public class Specialty extends BaseEntity {
+public class Speciality extends BaseEntity {
     private String description;
 
     public String getDescription() {
