@@ -7,11 +7,20 @@ import java.time.LocalDate;
  * Date: 27/05/2021
  * Time: 22:10
  */
-public class Pet extends BaseEntity{
+public class Pet extends BaseEntity {
 
+    String name;
     private PetType petType;
     private Owner owner;
     private LocalDate birthDate;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public PetType getPetType() {
         return petType;
