@@ -1,7 +1,8 @@
 package com.ximenes.sfgpetclinic.services.map;
 
 import com.ximenes.sfgpetclinic.models.Speciality;
-import com.ximenes.sfgpetclinic.services.SpecialtiesService;
+import com.ximenes.sfgpetclinic.services.SpecialityService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
@@ -10,7 +11,8 @@ import java.util.Set;
  * Date: 11/06/2021
  * Time: 19:54
  */
-public class SpecialityMapService extends AbstractMapService<Speciality, Long> implements SpecialtiesService {
+@Service
+public class SpecialityMapService extends AbstractMapService<Speciality, Long> implements SpecialityService {
     @Override
     public Set<Speciality> findAll() {
         return super.findAll();
