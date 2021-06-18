@@ -1,5 +1,6 @@
 package com.ximenes.sfgpetclinic.models;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,11 +9,21 @@ import java.util.Set;
  * Date: 27/05/2021
  * Time: 22:10
  */
+@Entity
+@Table(name = "owners")
 public class Owner extends Person {
 
+    @Column(name = "address")
     private String address;
+
+    @Column(name = "city")
     private String city;
+
+    // If I delete a Owner, cascade, deletes the pets too.
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
+
+    @Column(name = "telephone")
     private String telephone;
 
     public String getAddress() {

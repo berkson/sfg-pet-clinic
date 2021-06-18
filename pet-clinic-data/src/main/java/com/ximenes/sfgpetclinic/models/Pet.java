@@ -1,5 +1,6 @@
 package com.ximenes.sfgpetclinic.models;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
@@ -7,11 +8,22 @@ import java.time.LocalDate;
  * Date: 27/05/2021
  * Time: 22:10
  */
+@Entity
+@Table(name = "pets")
 public class Pet extends BaseEntity {
 
-    String name;
+    @Column(name = "name")
+    private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "type _id")
     private PetType petType;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
     private Owner owner;
+
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
     public String getName() {

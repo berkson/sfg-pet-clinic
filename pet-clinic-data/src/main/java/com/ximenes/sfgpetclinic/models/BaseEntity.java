@@ -13,8 +13,8 @@ import java.io.Serializable;
  */
 
 /*
-@MappedSuperclass - Serve para indicar à JPA que não deve ser criada uma tabela para essa entidade,
-pois ela será herdada por outras entidades
+@MappedSuperclass - this object will not be created at the database. Other classes
+will inherit from it.
  */
 @MappedSuperclass
 public class BaseEntity implements Serializable {
