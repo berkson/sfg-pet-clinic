@@ -6,6 +6,7 @@ import com.ximenes.sfgpetclinic.models.PetType;
 import com.ximenes.sfgpetclinic.services.OwnerService;
 import com.ximenes.sfgpetclinic.services.PetService;
 import com.ximenes.sfgpetclinic.services.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -17,6 +18,7 @@ import java.util.Set;
  * Time: 21:02
  */
 @Service
+@Profile({"default", "map"})
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
     private final PetService petService;
