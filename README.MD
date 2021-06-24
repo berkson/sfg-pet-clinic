@@ -8,7 +8,7 @@ de referencia [Spring Pet Clinic](https://github.com/spring-projects/spring-petc
 [![CircleCI](https://circleci.com/gh/berkson/sfg-pet-clinic.svg?style=svg&circle-token=ff9cbd2669ab3e39f21d3e9e12c0eba4a84dae5c)](https://github.com/berkson/sfg-pet-clinic)
 
 
-#License
+# License
 
 A aplicação de exemplo Spring PetClinic foi lançada sobre a versão 2.0 da 
 [licença Apache](https://www.apache.org/licenses/LICENSE-2.0)
