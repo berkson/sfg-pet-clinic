@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Date: 03/06/2021
  * Time: 22:44
  */
-@RequestMapping("owners")
+@RequestMapping("/owners")
 @Controller
 public class OwnerController {
 
@@ -30,6 +30,6 @@ public class OwnerController {
 
     @RequestMapping("/find")
     public String findOwners() {
-        return "notImplemented";
+        return "unimplemented";
     }
 }
