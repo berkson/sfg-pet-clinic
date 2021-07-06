@@ -3,7 +3,9 @@ package com.ximenes.sfgpetclinic.controllers;
 import com.ximenes.sfgpetclinic.services.OwnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,9 +33,15 @@ public class OwnerController {
         return "owners/index";
     }
 
+    // important more grained control over a form post field/input
+    @InitBinder
+    public void setAllowedFields(WebDataBinder dataBinder) {
+        dataBinder.setDisallowedFields("id");
+    }
+
     @RequestMapping("/find")
     public String findOwners() {
-        return "unimplemented";
+        return "owners/findOwners";
     }
 
     @GetMapping("/{ownerId}")
