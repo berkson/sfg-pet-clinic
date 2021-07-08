@@ -2,6 +2,8 @@ package com.ximenes.sfgpetclinic.services;
 
 import com.ximenes.sfgpetclinic.models.Owner;
 
+import java.util.List;
+
 
 /**
  * Created by Berkson Ximenes
@@ -10,4 +12,5 @@ import com.ximenes.sfgpetclinic.models.Owner;
  */
 public interface OwnerService extends CrudService<Owner, Long> {
     Owner findByLastName(String lastName);
+    List<Owner> findByLastNameLike(String lastName);
 }
