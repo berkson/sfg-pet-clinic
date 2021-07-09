@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -23,12 +24,14 @@ public class Owner extends Person {
     // @Single - Creates a method pet witch we can use to add one pet at a time
     @Builder
     public Owner(Long id, String firstName, String lastName,
-                 String address, String city, @Singular Set<Pet> pets, String telephone) {
+                 String address, String city, Set<Pet> pets, String telephone) {
         super(id, firstName, lastName);
         this.address = address;
         this.city = city;
-        this.pets = pets;
         this.telephone = telephone;
+        if (pets != null) {
+            this.pets = pets;
+        }
     }
 
     @Column(name = "address")
@@ -44,5 +47,11 @@ public class Owner extends Person {
     @Column(name = "telephone")
     private String telephone;
 
+    public Pet getPet(String name) {
+        final String lowerCaseName = name.toLowerCase(Locale.ROOT);
+        return pets.stream()
+                .filter(pet -> pet.getName().toLowerCase(Locale.ROOT)
+                        .equals(lowerCaseName)).findFirst().orElse(null);
+    }
 }
 

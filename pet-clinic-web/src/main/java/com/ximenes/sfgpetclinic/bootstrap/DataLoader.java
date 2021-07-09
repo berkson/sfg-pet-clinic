@@ -103,7 +103,8 @@ public class DataLoader implements CommandLineRunner {
         Owner owner3 = Owner.builder()
                 .firstName("Jack").lastName("Jackass")
                 .address("155 Riverdale st")
-                .city("Miami").telephone("12345678943").pet(jackPet).build();
+                .city("Miami").telephone("12345678943").build();
+        owner3.getPets().add(jackPet);
         jackPet.setOwner(owner3);
         ownerService.save(owner3);
 
