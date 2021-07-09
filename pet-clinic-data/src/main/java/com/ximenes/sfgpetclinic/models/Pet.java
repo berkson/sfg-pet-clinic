@@ -14,8 +14,6 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "pets")
 public class Pet extends BaseEntity {
@@ -24,6 +22,24 @@ public class Pet extends BaseEntity {
         this.name = name;
         this.petType = petType;
         this.birthDate = birthDate;
+    }
+
+    public Pet(String name, PetType petType, Owner owner, LocalDate birthDate, Set<Visit> visits) {
+        this.name = name;
+        this.petType = petType;
+        this.owner = owner;
+        this.birthDate = birthDate;
+        this.visits = visits;
+    }
+
+    @Builder
+    public Pet(Long id, String name, PetType petType, Owner owner, LocalDate birthDate, Set<Visit> visits) {
+        super(id);
+        this.name = name;
+        this.petType = petType;
+        this.owner = owner;
+        this.birthDate = birthDate;
+        this.visits = visits;
     }
 
     @Column(name = "name")
@@ -42,5 +58,6 @@ public class Pet extends BaseEntity {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
     private Set<Visit> visits;
+
 
 }

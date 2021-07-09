@@ -14,7 +14,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.naming.Binding;
 import java.util.Collection;
 
 /**
@@ -23,7 +22,7 @@ import java.util.Collection;
  * Time: 20:24
  */
 @Controller
-@RequestMapping("/owners/{id}")
+@RequestMapping("/owners/{ownerId}")
 public class PetController {
 
     private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
@@ -45,8 +44,8 @@ public class PetController {
 
     // this annotation get the owner that owns the id and attach it to the view model
     @ModelAttribute("owner")
-    public Owner findOwner(@PathVariable Long id) {
-        return ownerService.findById(id);
+    public Owner findOwner(@PathVariable Long ownerId) {
+        return ownerService.findById(ownerId);
     }
 
     @InitBinder("owner")
@@ -56,7 +55,7 @@ public class PetController {
 
     @GetMapping("/pets/new")
     public String initCreationForm(Owner owner, Model model) {
-        Pet pet = Pet.builder().build();
+        Pet pet = Pet.builder().owner(owner).build();
         owner.getPets().add(pet);
         model.addAttribute("pet", pet);
         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
@@ -67,6 +66,7 @@ public class PetController {
         if (StringUtils.hasLength(pet.getName()) && pet.isNew() && owner.getPet(pet.getName()) != null) {
             result.rejectValue("name", "duplicate", "already exists");
         }
+        pet.setOwner(owner);
         owner.getPets().add(pet);
         if (result.hasErrors()) {
             model.addAttribute("pet", pet);
@@ -78,8 +78,8 @@ public class PetController {
     }
 
     @GetMapping("/pets/{id}/edit")
-    public String initUpdateForm(@PathVariable Long id, Model model) {
-        model.addAttribute("pet", petService.findById(id));
+    public String initUpdateForm(@PathVariable Long ownerId, Model model) {
+        model.addAttribute("pet", petService.findById(ownerId));
         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
     }
 
