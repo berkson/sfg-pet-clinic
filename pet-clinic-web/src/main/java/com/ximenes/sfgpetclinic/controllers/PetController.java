@@ -57,6 +57,7 @@ public class PetController {
     public String initCreationForm(Owner owner, Model model) {
         Pet pet = Pet.builder().owner(owner).build();
         owner.getPets().add(pet);
+        pet.setOwner(owner);
         model.addAttribute("pet", pet);
         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
     }
@@ -66,8 +67,8 @@ public class PetController {
         if (StringUtils.hasLength(pet.getName()) && pet.isNew() && owner.getPet(pet.getName()) != null) {
             result.rejectValue("name", "duplicate", "already exists");
         }
-        pet.setOwner(owner);
         owner.getPets().add(pet);
+        pet.setOwner(owner);
         if (result.hasErrors()) {
             model.addAttribute("pet", pet);
             return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
@@ -77,24 +78,50 @@ public class PetController {
         }
     }
 
-    @GetMapping("/pets/{id}/edit")
-    public String initUpdateForm(@PathVariable Long ownerId, Model model) {
-        model.addAttribute("pet", petService.findById(ownerId));
+    @GetMapping("/pets/{petId}/edit")
+    public String initUpdateForm(@PathVariable("petId") Long petId, Model model) {
+        Pet pet = petService.findById(petId);
+        model.addAttribute("pet", pet);
         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
     }
 
-    @PostMapping("/pets/{id}/edit")
-    public String processUpdateForm(@Validated Pet pet, BindingResult result, Owner owner,
-                                    Model model) {
+    @PostMapping("/pets/{petId}/edit")
+    public String processUpdateForm(@Validated Pet pet, BindingResult result, Owner owner, Model model) {
         if (result.hasErrors()) {
             pet.setOwner(owner);
             model.addAttribute("pet", pet);
             return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
-        } else {
-            owner.getPets().add(pet);
+        }
+        else {
+            owner.addPet(pet);
             petService.save(pet);
             return "redirect:/owners/" + owner.getId();
         }
+//    If we do not create method owner.addPet() we must do this way:
+//    @GetMapping("/pets/{id}/edit")
+//    public String initUpdateForm(@PathVariable Long ownerId, @PathVariable Long id, Model model) {
+//        Owner owner = ownerService.findById(ownerId);
+//        Pet pet = owner.getPets().stream().filter(pet1 -> pet1.getId().equals(id)).findFirst().orElse(null);
+//        pet.setOwner(owner);
+//        model.addAttribute("owner", owner);
+//        model.addAttribute("pet", pet);
+//        return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
+//    }
+//
+//    @PostMapping("/pets/{id}/edit")
+//    public String processUpdateForm(@Validated Pet pet, BindingResult result, Owner owner,
+//                                    Model model) {
+//        if (result.hasErrors()) {
+//            pet.setOwner(owner);
+//            model.addAttribute("pet", pet);
+//            return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
+//        } else {
+//            owner.getPets().removeIf(pet1 -> pet1.getId().equals(pet.getId()));
+//            owner.getPets().add(pet);
+//            pet.setOwner(owner);
+//            ownerService.save(owner);
+//            return "redirect:/owners/" + owner.getId();
+//        }
 
     }
 }

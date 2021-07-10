@@ -53,5 +53,20 @@ public class Owner extends Person {
                 .filter(pet -> pet.getName().toLowerCase(Locale.ROOT)
                         .equals(lowerCaseName)).findFirst().orElse(null);
     }
+
+    // this method must exists to save the Pet entity with the petService. we must attach the pet to the Owner ever
+    public void addPet(Pet pet) {
+        if (pet.isNew()) {
+            getPetsInternal().add(pet);
+        }
+        pet.setOwner(this);
+    }
+
+    protected Set<Pet> getPetsInternal() {
+        if (this.pets == null) {
+            this.pets = new HashSet<>();
+        }
+        return this.pets;
+    }
 }
 
