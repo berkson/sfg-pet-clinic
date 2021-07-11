@@ -5,6 +5,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -61,5 +64,19 @@ public class Pet extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
     private Set<Visit> visits;
 
+    protected Set<Visit> getVisitsInternal(){
+        if (this.visits == null){
+            this.visits = new HashSet<>();
+        }
+        return this.visits;
+    }
 
+    public void setVisitsInternal(Collection<Visit> visits){
+        this.visits = new LinkedHashSet<>(visits);
+    }
+
+    public void addVisit(Visit visit){
+        getVisitsInternal().add(visit);
+        visit.setPet(this);
+    }
 }

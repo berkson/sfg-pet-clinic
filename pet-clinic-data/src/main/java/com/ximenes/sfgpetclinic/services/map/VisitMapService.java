@@ -5,7 +5,9 @@ import com.ximenes.sfgpetclinic.services.VisitService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by Berkson Ximenes
@@ -45,5 +47,13 @@ public class VisitMapService extends AbstractMapService<Visit, Long> implements 
     @Override
     public Visit findById(Long id) {
         return super.findById(id);
+    }
+
+    @Override
+    public List<Visit> findVisitByPetId(Long petId) {
+
+        return this.findAll().stream()
+                .filter(visit -> visit.getPet().getId().equals(petId))
+                .collect(Collectors.toList());
     }
 }

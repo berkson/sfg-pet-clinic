@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -49,5 +50,10 @@ public class VisitSDJpaService implements VisitService {
     @Override
     public void deleteById(Long aLong) {
         visitRepository.deleteById(aLong);
+    }
+
+    @Override
+    public List<Visit> findVisitByPetId(Long petId) {
+        return visitRepository.findVisitByPetId(petId);
     }
 }
