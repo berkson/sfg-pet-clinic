@@ -11,10 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -41,18 +38,19 @@ class OwnerSDJpaServiceTest {
     Owner returnOwner;
 
     final static String LAST_NAME = "Soares";
+    final static String LAST_NAME1 = "Soar";
+    Set<Owner> returnOwnerSet;
 
     @BeforeEach
     void setUp() {
+        returnOwnerSet = new HashSet<>();
+        returnOwnerSet.add(Owner.builder().id(1L).lastName(LAST_NAME).build());
+        returnOwnerSet.add(Owner.builder().id(2L).lastName(LAST_NAME1).build());
         returnOwner = Owner.builder().id(1L).lastName(LAST_NAME).build();
     }
 
     @Test
     void findAll() {
-        Set<Owner> returnOwnerSet = new HashSet<>();
-        returnOwnerSet.add(Owner.builder().id(1L).build());
-        returnOwnerSet.add(Owner.builder().id(2L).build());
-
         when(ownerRepository.findAll()).thenReturn(returnOwnerSet);
 
         Set<Owner> owners = service.findAll();
@@ -119,4 +117,5 @@ class OwnerSDJpaServiceTest {
         verify(ownerRepository).findByLastName(any());
 
     }
+
 }
