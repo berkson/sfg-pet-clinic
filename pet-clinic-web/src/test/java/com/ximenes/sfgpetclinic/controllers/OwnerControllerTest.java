@@ -81,7 +81,7 @@ class OwnerControllerTest {
         when(ownerService.findByLastNameLike(anyString())).thenReturn(new ArrayList<>(owners));
 
         mockMvc.perform(get("/owners")
-                .param("lastName", ""))
+                .param("lastName", "any string"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("owners/ownersList"))
                 .andExpect(model().attribute("selections", hasSize(2)));
