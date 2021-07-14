@@ -2,7 +2,6 @@ package com.ximenes.sfgpetclinic.controllers;
 
 import com.ximenes.sfgpetclinic.models.Owner;
 import com.ximenes.sfgpetclinic.services.OwnerService;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,7 +17,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -81,7 +80,8 @@ class OwnerControllerTest {
     void processFindFormReturnMany() throws Exception {
         when(ownerService.findByLastNameLike(anyString())).thenReturn(new ArrayList<>(owners));
 
-        mockMvc.perform(get("/owners"))
+        mockMvc.perform(get("/owners")
+                .param("lastName", ""))
                 .andExpect(status().isOk())
                 .andExpect(view().name("owners/ownersList"))
                 .andExpect(model().attribute("selections", hasSize(2)));
@@ -142,7 +142,7 @@ class OwnerControllerTest {
     }
 
     @Test
-    void processeUpdateOwnerForm() throws Exception{
+    void processeUpdateOwnerForm() throws Exception {
         when(ownerService.save(any())).thenReturn(Owner.builder().id(1l).build());
 
         mockMvc.perform(post("/owners/1/edit"))
