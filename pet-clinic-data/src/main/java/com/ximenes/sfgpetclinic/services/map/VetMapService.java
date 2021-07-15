@@ -1,13 +1,12 @@
 package com.ximenes.sfgpetclinic.services.map;
 
-import com.ximenes.sfgpetclinic.models.Speciality;
+import com.ximenes.sfgpetclinic.models.Specialty;
 import com.ximenes.sfgpetclinic.models.Vet;
 import com.ximenes.sfgpetclinic.services.SpecialityService;
 import com.ximenes.sfgpetclinic.services.VetService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -46,8 +45,8 @@ public class VetMapService extends AbstractMapService<Vet, Long> implements VetS
         if (object.getSpecialties().size() > 0) {
             object.getSpecialties().forEach(speciality -> {
                 if (speciality.getId() == null) {
-                    Speciality savedSpeciality = specialityService.save(speciality);
-                    speciality.setId(savedSpeciality.getId());
+                    Specialty savedSpecialty = specialityService.save(speciality);
+                    speciality.setId(savedSpecialty.getId());
                 }
             });
         }

@@ -1,6 +1,6 @@
 package com.ximenes.sfgpetclinic.repositories;
 
-import com.ximenes.sfgpetclinic.models.Speciality;
+import com.ximenes.sfgpetclinic.models.Specialty;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -8,5 +8,5 @@ import org.springframework.data.repository.CrudRepository;
  * Date: 17/06/2021
  * Time: 23:13
  */
-public interface SpecialityRepository extends CrudRepository<Speciality, Long> {
+public interface SpecialityRepository extends CrudRepository<Specialty, Long> {
 }

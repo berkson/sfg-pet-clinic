@@ -53,17 +53,17 @@ public class DataLoader implements CommandLineRunner {
         jegue.setName("Jegue");
         PetType savedJeguePetType = petTypeService.save(jegue);
 
-        Speciality radiology = new Speciality();
+        Specialty radiology = new Specialty();
         radiology.setDescription("Radiology");
-        Speciality savedRadiology = specialityService.save(radiology);
+        Specialty savedRadiology = specialityService.save(radiology);
 
-        Speciality surgery = new Speciality();
+        Specialty surgery = new Specialty();
         surgery.setDescription("Surgery");
-        Speciality savedSurgery = specialityService.save(surgery);
+        Specialty savedSurgery = specialityService.save(surgery);
 
-        Speciality dentistry = new Speciality();
+        Specialty dentistry = new Specialty();
         dentistry.setDescription("Dentistry");
-        Speciality savedDentistry = specialityService.save(dentistry);
+        Specialty savedDentistry = specialityService.save(dentistry);
 
         Owner owner1 = new Owner();
         owner1.setFirstName("Michael");
@@ -119,7 +119,7 @@ public class DataLoader implements CommandLineRunner {
         Vet vet1 = new Vet();
         vet1.setFirstName("Sam");
         vet1.setLastName("Axe");
-        vet1.getSpecialties().add(savedRadiology);
+        vet1.addSpecialty(savedRadiology);
 
 
         vetService.save(vet1);
@@ -127,7 +127,8 @@ public class DataLoader implements CommandLineRunner {
         Vet vet2 = new Vet();
         vet2.setFirstName("Jessie");
         vet2.setLastName("Porter");
-        vet2.getSpecialties().add(savedSurgery);
+        vet2.addSpecialty(savedSurgery);
+        vet2.addSpecialty(savedDentistry);
 
         vetService.save(vet2);
 

@@ -1,6 +1,6 @@
 package com.ximenes.sfgpetclinic.services.map.springdatajpa;
 
-import com.ximenes.sfgpetclinic.models.Speciality;
+import com.ximenes.sfgpetclinic.models.Specialty;
 import com.ximenes.sfgpetclinic.repositories.SpecialityRepository;
 import com.ximenes.sfgpetclinic.services.SpecialityService;
 import org.springframework.context.annotation.Profile;
@@ -25,24 +25,24 @@ public class SpecialtySDJpaService implements SpecialityService {
     }
 
     @Override
-    public Set<Speciality> findAll() {
-        Set<Speciality> specialties = new HashSet<>();
+    public Set<Specialty> findAll() {
+        Set<Specialty> specialties = new HashSet<>();
         specialityRepository.findAll().forEach(specialties::add);
         return specialties;
     }
 
     @Override
-    public Speciality findById(Long aLong) {
+    public Specialty findById(Long aLong) {
         return specialityRepository.findById(aLong).orElse(null);
     }
 
     @Override
-    public Speciality save(Speciality object) {
+    public Specialty save(Specialty object) {
         return specialityRepository.save(object);
     }
 
     @Override
-    public void delete(Speciality object) {
+    public void delete(Specialty object) {
         specialityRepository.delete(object);
     }
 
